@@ -50,12 +50,10 @@ exemple :
             <input type="submit" value="Vérifier">
         </div>
     </form>
-
     <ul>
         <% orders.forEach((order, index) => { %>
-            <li>ordre numéro <%= index + 1 %> au prix de <%= order.price %> et avec une quantité de <%= order.quantity %></li>
+            <li>ordre numéro <%= index + 1 %> <%= order.side %> <%= order.symbol %> au prix de <%= order.price %> et avec une quantité de <%= order.quantity %></li>
         <% }); %>
     </ul>
-
 </body>
 </html>
