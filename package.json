@@ -1,0 +1,27 @@
+{
+  "name": "binordance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lydstyl/binordance.git"
+  },
+  "author": "Gabriel <lydstyl@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lydstyl/binordance/issues"
+  },
+  "homepage": "https://github.com/lydstyl/binordance#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  }
+}
