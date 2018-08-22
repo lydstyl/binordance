@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Binordance</title>
     <style>
         select{
             display: inline-block;
@@ -12,7 +12,8 @@
     </style>
 </head>
 <body>
-    <h1>Home ejs</h1>
+    <h1>Binordance</h1>
+    <a href="/">accueil</a>
     <ul>
         <li>
             // copier coller le fastOrder et boom un js front le transforme en prix qte
@@ -34,7 +35,6 @@
                 value="XRPBTC"
             />
             <span class="validity"></span>
-
             <select name="type">
                 <option value="BUY" selected>BUY</option>
                 <option value="SELL">SELL</option> 
@@ -50,10 +50,18 @@ exemple :
             <input type="submit" value="Vérifier">
         </div>
     </form>
-    <ul>
-        <% orders.forEach((order, index) => { %>
-            <li>ordre numéro <%= index + 1 %> <%= order.side %> <%= order.symbol %> au prix de <%= order.price %> et avec une quantité de <%= order.quantity %></li>
-        <% }); %>
-    </ul>
+    <% if(show){ %>
+        <ul>
+            <% orders.forEach((order, index) => { %>
+                <li>ordre numéro <%= index + 1 %> <%= order.side %> <%= order.symbol %> au prix de <%= order.price %> et avec une quantité de <%= order.quantity %></li>
+            <% }); %>
+        </ul>
+        <div>   
+            <form action="/addInBinance" method="POST">
+                <label for="symbol">password:</label><input name="password" type="password">
+                <input type="submit" value="ajouter ces ordres dans Binance">
+            </form>
+        </div>
+    <% } %>
 </body>
 </html>
