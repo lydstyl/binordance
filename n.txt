@@ -1,5 +1,0 @@
-afficher une page esx avec input zone txt
-
-copier coller le fastOrder et boom
-
-bouton valider qui apparait
