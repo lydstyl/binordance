@@ -3,7 +3,8 @@ let bodyParser = require('body-parser');
 let urlencodedParser = bodyParser.urlencoded({ extended: false })
 let app = express();
 
-app.get('/', (req, res) =>{
+app.use(express.static('public'))
+.get('/', (req, res) =>{
     console.log('get1');
     if (global.ordersArray == undefined) {
         //console.log('ordersArray undefi');
@@ -44,19 +45,14 @@ app.get('/', (req, res) =>{
     //console.log(password);
     if (password == 'pass') { /////////////////////// todo hacher le pass https://www.npmjs.com/package/bcrypt et mettre le pass en bdd ?
         const addOrders = require('./addorders');
-
-
         global.ordersArray.forEach(order => {
-            // todo : modifier le module et faire un addOrders(params) sans le console.log
-            console.log(addOrders(
+            addOrders(
                 order.symbol, 
                 order.side, 
                 order.price, 
                 order.quantity
-            ));
+            );
         });
-
-
     }
     global.ordersArray = undefined; // set it back to undefined
     res.redirect('/');
@@ -65,4 +61,4 @@ app.get('/', (req, res) =>{
     res.setHeader('Content-Type', 'text/plain');
     res.status(404).send('Désolé Boby, page non trouvée !');
 })
-.listen(2300);
+.listen(2300); //http://localhost:2300/
