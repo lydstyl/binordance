@@ -4,20 +4,8 @@ const api = require('binance'); // https://www.npmjs.com/package/binance
 let fs = require("fs");
 let passjson = fs.readFileSync("pass.json");
 passjson = JSON.parse(passjson);
-// Get Value from JSON
-console.log("User Name:", passjson.password);
-console.log("Email:", passjson.key);
-console.log("Password:", passjson.secret);
 
 const binanceRest = new api.BinanceRest({
-
-
-
-    // todo mettre les login et pass hached dans un json ? voir avec Alex
-
-
-
-
     key: passjson.key, // Get this from your account on binance.com
     secret: passjson.secret, // Same for this
     timeout: 15000, // Optional, defaults to 15000, is the request time out in milliseconds
@@ -68,7 +56,7 @@ module.exports = function (symbol, side, price, quantity) {
     });
     //binanceRest.endTimeSync();
     //return `order sent to Binance ${symbol} ${side} ${price} ${quantity}`
-    sleep(200);
+    //sleep(200);
 }
 
 // voir pkoi

@@ -1,5 +1,6 @@
 let express = require('express');
 let bodyParser = require('body-parser');
+let fs = require("fs");
 let urlencodedParser = bodyParser.urlencoded({ extended: false })
 let app = express();
 
@@ -18,7 +19,8 @@ app.use(express.static('public'))
 })
 .post('/check-text-orders', urlencodedParser, (req, res) => {
     console.log('post1 check-text-orders');
-    let orders = req.body.orders.split('\r\n'); // eg [ '0.0000540 50', '0.0000600 30' ]
+    let orders = req.body.orders.split('\n'); // eg [ '0.0000540 50', '0.0000600 30' ]
+    console.log(orders);
     global.ordersArray = [];
     orders.forEach(o => {
         let order = o.split(' ');
@@ -34,7 +36,6 @@ app.use(express.static('public'))
     if (global.ordersArray[0].price * 0 != 0) { // NaN
         global.show = false;
     }else{
-        //console.log(global.ordersArray);
         global.show = true;
     }
     res.redirect('/');
@@ -42,10 +43,16 @@ app.use(express.static('public'))
 .post('/addInBinance', urlencodedParser, (req, res) =>{
     console.log('post2 addInBinance');
     let password = req.body.password;
-    //console.log(password);
-    if (password == 'pass') { /////////////////////// todo hacher le pass https://www.npmjs.com/package/bcrypt et mettre le pass en bdd ?
+    if (password == JSON.parse(fs.readFileSync("pass.json")).password) { /////////////////////// todo hacher le pass https://www.npmjs.com/package/bcrypt et mettre le pass en bdd ?
         const addOrders = require('./addorders');
         global.ordersArray.forEach(order => {
+            console.log(
+                `sending order to binance : 
+                    ${order.symbol} 
+                    ${order.side} 
+                    ${order.price} 
+                    ${order.quantity}`
+            );
             addOrders(
                 order.symbol, 
                 order.side, 
