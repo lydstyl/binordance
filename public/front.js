@@ -6,6 +6,10 @@ textarea.addEventListener("blur", (e)=>{
         console.log('return');
         return
     }
+    if (txt.split('\n')[0].split(' ')[0] * 0 == 0) {
+        console.log('0 return');
+        return;
+    }
     let newTxt = '';
     txt = txt.split('\n');
     let end = false;
